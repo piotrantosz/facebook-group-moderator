@@ -10,3 +10,4 @@ disclaimer: it's really simple, made in one night, but still - take it and use i
 ## Run 
 * source venv/venv/bin/activate
 * pip install -r requirements.txt
+* python bot.py
