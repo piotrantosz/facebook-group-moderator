@@ -12,7 +12,14 @@ GROUP_NAME = 'GROUP_NAME'
 # visit mbasic.facebook.com, go to your group, copy numbers after /groups/GROUP_ID?not_important_things
 GROUP_ID = 'GROUP_ID'
 # if post contains one of this words, it will be accepted
-ACCEPTED_PHRASES = ['dog', 'cat', 'example']
+# use many dicts for multiple word "forms"
+PHRASES = [
+    ['dog', 'doggo', 'doggy'],
+    ['cat', 'catty', 'kitty'],
+    ['bla', 'blah', 'blahh'],
+]
+
+
 
 def authenticate():
     """
@@ -90,8 +97,9 @@ def analyze_posts(posts):
     accepted_posts = []
 
     for post in posts:
-        if (LinearSearch(ACCEPTED_PHRASES, post['content'])):
-            accepted_posts.append(post['top_level_post_id'])
+        for phrase in PHRASES:
+            if (LinearSearch(phrase, post['content'])):
+                accepted_posts.append(post['top_level_post_id'])
 
     accepted_posts = list(set(accepted_posts))
 
